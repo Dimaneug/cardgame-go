@@ -55,11 +55,11 @@ func (rd *RegularDealer) MakeAllTurns() bool {
 	for dealerScore < 17 {
 		time.Sleep(1 * time.Second)
 		dealerScore = rd.MakeTurn()
-		fmt.Println("\nКарты раздающего:")
+		fmt.Print("Карты раздающего:")
 		for _, card := range rd.GetCards() {
-			fmt.Println(*card)
+			fmt.Printf(" %v", *card)
 		}
-		fmt.Println("Счёт:", dealerScore)
+		fmt.Println("\nСчёт:", dealerScore)
 		fmt.Println()
 
 		if rd.IsBust() {

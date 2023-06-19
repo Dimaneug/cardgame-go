@@ -34,9 +34,7 @@ func (g *Game) Start() {
 		g.dealer.Hit()
 	}
 
-	fmt.Println("Карты раздающего:")
-	fmt.Println("[Скрытая карта]")
-	fmt.Println(*g.dealer.GetCards()[1])
+	fmt.Printf("\nКарты раздающего: {Скрытая карта} %v\n", *g.dealer.GetCards()[1])
 	fmt.Println("Счёт:", g.dealer.GetScore(true))
 	fmt.Println()
 
@@ -66,11 +64,11 @@ func (g *Game) Start() {
 
 	playersBust := 0
 	for i, player := range g.players {
-		fmt.Printf("Карты игрока %d:\n", i+1)
+		fmt.Printf("Карты игрока %d:", i+1)
 		for _, card := range player.GetCards() {
-			fmt.Println(*card)
+			fmt.Printf(" %v", *card)
 		}
-		fmt.Printf("Счёт игрока %d: %d\n\n", i+1, player.GetScore())
+		fmt.Printf("\nСчёт игрока %d: %d\n\n", i+1, player.GetScore())
 
 		if player.IsBlackjack() {
 			fmt.Printf("У игрока %d блэкджек.\n", i+1)
@@ -79,14 +77,14 @@ func (g *Game) Start() {
 
 		for {
 			if player.MakeTurn(i + 1) {
-				fmt.Printf("У игрока %d счёт %d\n", i+1, player.GetScore())
+				fmt.Printf("У игрока %d счёт %d\n\n", i+1, player.GetScore())
 				break
 			}
-			fmt.Printf("\nКарты игрока %d:\n", i+1)
+			fmt.Printf("\nКарты игрока %d:", i+1)
 			for _, card := range player.GetCards() {
-				fmt.Println(*card)
+				fmt.Printf(" %v", *card)
 			}
-			fmt.Printf("Счёт игрока %d: %d\n\n", i+1, player.GetScore())
+			fmt.Printf("\nСчёт игрока %d: %d\n\n", i+1, player.GetScore())
 			if player.IsBust() {
 				fmt.Printf("У игрока %d перебор.\n", i+1)
 				playersBust++
@@ -100,10 +98,10 @@ func (g *Game) Start() {
 		return
 	}
 
-	dealerScore := g.dealer.GetScore(false)
 	if g.dealer.MakeAllTurns() {
 		return
 	}
+	dealerScore := g.dealer.GetScore(false)
 
 	fmt.Println("--------------------")
 	fmt.Println("\nИтоговый счёт")
