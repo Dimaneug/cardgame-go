@@ -10,7 +10,7 @@ type RegularDeck struct {
 	playersLimit int
 }
 
-func (rd RegularDeck) GetCardValue(card Card) int {
+func (rd *RegularDeck) GetCardValue(card Card) int {
 	rank := card.Rank
 	switch rank {
 	case "A":
@@ -26,7 +26,7 @@ func (rd RegularDeck) GetCardValue(card Card) int {
 	}
 }
 
-func (rd RegularDeck) GetScore(cards []*Card) int {
+func (rd *RegularDeck) GetScore(cards []*Card) int {
 	score := 0
 	aceCount := 0
 
@@ -46,17 +46,17 @@ func (rd RegularDeck) GetScore(cards []*Card) int {
 	return score
 }
 
-func (rd RegularDeck) DeleteCard(i int) {
+func (rd *RegularDeck) DeleteCard(i int) {
 	copy(rd.cards[i:], rd.cards[i+1:])
 	rd.cards[len(rd.cards)-1] = nil
 	rd.cards = rd.cards[:len(rd.cards)-1]
 }
 
-func (rd RegularDeck) GetPlayersLimit() int {
+func (rd *RegularDeck) GetPlayersLimit() int {
 	return rd.playersLimit
 }
 
-func (rd RegularDeck) GetCards() []*Card {
+func (rd *RegularDeck) GetCards() []*Card {
 	return rd.cards
 }
 
@@ -72,5 +72,5 @@ func (rdf *RegularDeckFactory) MakeDeck() Deck {
 			cards = append(cards, card)
 		}
 	}
-	return RegularDeck{cards: cards, playersLimit: 3}
+	return &RegularDeck{cards: cards, playersLimit: 3}
 }

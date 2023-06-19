@@ -61,7 +61,7 @@ func (g *Game) Start() {
 	for i, player := range g.players {
 		fmt.Printf("Карты игрока %d:\n", i+1)
 		for _, card := range player.GetCards() {
-			fmt.Println(card)
+			fmt.Println(*card)
 		}
 		fmt.Printf("Счёт игрока %d: %d\n\n", i+1, player.GetScore())
 
@@ -77,7 +77,7 @@ func (g *Game) Start() {
 			}
 			fmt.Printf("\nКарты игрока %d:\n", i+1)
 			for _, card := range player.GetCards() {
-				fmt.Println(card)
+				fmt.Println(*card)
 			}
 			fmt.Printf("Счёт игрока %d: %d\n\n", i+1, player.GetScore())
 			if player.IsBust() {
