@@ -1,9 +1,10 @@
 package player
 
 import (
-	"cardgame/pkg/deck"
 	"fmt"
 	"math/rand"
+
+	"cardgame/pkg/deck"
 )
 
 type RegularPlayer struct {

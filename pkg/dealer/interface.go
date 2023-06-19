@@ -10,4 +10,5 @@ type Dealer interface {
 	GetScore(hidden bool) int
 	GetCards() []*deck.Card
 	SetDeck(deck deck.Deck)
+	MakeAllTurns() bool
 }
